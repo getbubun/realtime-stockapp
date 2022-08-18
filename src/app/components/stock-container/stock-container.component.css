@@ -1,0 +1,8 @@
+:host() {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  height: calc(100vh - 60px);
+  overflow-y: scroll;
+}

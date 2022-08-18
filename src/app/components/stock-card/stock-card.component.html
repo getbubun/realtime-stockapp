@@ -1,0 +1,43 @@
+<div
+  class="stock-card"
+  [ngClass]="{
+    'stock-negative': stockData?.change < 0,
+    'stock-positive': stockData?.change > 0,
+    'stock-disabled': !stockData?.isActive
+  }"
+>
+  <div class="stock-container">
+    <h1>{{ stockData?.symbol }}</h1>
+    <p class="stock-price">
+      {{ stockData?.currPrice | currency: "USD":"symbol" }}
+    </p>
+    <p class="stock-changes">
+      {{ stockData?.change < 0 ? "" : "+"
+      }}{{ stockData?.change | number: "1.2-2" }}
+    </p>
+    <p class="stock-changes">({{ stockData?.changePercentage }})</p>
+    <div class="stock-trade-history">
+      <p class=""><strong>Last Trade</strong></p>
+      <p>{{ stockData?.latestTradingDay || "-" }}</p>
+    </div>
+
+    <p class="stock-price">VOL : {{ stockData?.volume }}</p>
+
+    <div class="stock-tabular-data">
+      <p>Day's Range</p>
+      <p>
+        <strong
+          >{{ stockData?.dailyLowPrice | number: "1.2-2" }} -
+          {{ stockData?.dailyHighPrice | number: "1.2-2" }}</strong
+        >
+      </p>
+    </div>
+  </div>
+
+  <div class="stock-toggle">
+    <stock-card-toggle
+      [toggleStatus]="stockData?.isActive"
+      (onToggleChange)="cardToggleValueChanged($event)"
+    ></stock-card-toggle>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<label class="toggle-switch">
+  <input
+    type="checkbox"
+    [(ngModel)]="toggleStatus"
+    (ngModelChange)="onToggleChange.emit($event)"
+  />
+  <div class="toggle-slider round"></div>
+</label>
